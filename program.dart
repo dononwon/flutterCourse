@@ -65,23 +65,61 @@ void eighth(){
   print("clipped list: ${list}");
 
   //g
-  list
-    .where((element) => element < 4)
-    .forEach((element) {
-       element = element * 10; 
-    });
+  for(var i = 0; i < list.length; i++) {
+    if([1, 2, 3].contains(list[i])) {
+      list[i] *= 10;
+    }
+  }
   print("list: ${list}");
 }
 
 void ninth(){
+  //a
   var numberBook = new Map<String, String>();
   numberBook["Иван"] = "2264865";
   numberBook["Татьяна"] = "89523366684";
   numberBook["Олег"] = "84952256575";
+
+  //b
   print("namesVsPhones: ${numberBook}");
 
+  //c
   numberBook["Екатерина"] = "2359942";
-  print("namesVsPhones added Екатерина: ${numberBook}");
+
+  //d
+  List<String> tempList = [];
+  var reversedMap = new Map<String, String>();
+  numberBook.keys.forEach((element) => tempList.add(element));
+  tempList.reversed.forEach((element) { 
+    reversedMap[element] = numberBook[element]!;
+  });
+  numberBook = reversedMap;
+  print("namesVsPhones: ${numberBook}");
+}
+
+void tenth(){
+  //a
+  var mySet = {"Москва", "Вашингтон", "Париж"};
+  //b
+  mySet.add("Вашингтон");
+  //Set это коллекция уникальных значений, Вашингтон уже был в коллекции
+  print(mySet.length);
+
+  //c
+  var text = '''
+She sells sea shells on the sea shore
+The shells that she sells are sea shells I am sure.
+So if she sells sea shells on the sea shore
+I am sure that the shells are sea shore shells
+  ''';
+  
+  Set<String> set = {};
+  new RegExp(r'(\w+)')
+    .allMatches(text)
+    .forEach((element) {
+      set.add(element.group(0).toString().toLowerCase()); 
+    });
+  print(set.length);
 }
 
 void main(){
@@ -94,5 +132,5 @@ void main(){
   seventh();
   eighth();
   ninth();
-
+  tenth();
 }
